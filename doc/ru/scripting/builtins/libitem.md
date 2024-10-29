@@ -18,6 +18,12 @@ item.defs_count() -> int
 
 -- Возвращает имя иконки предмета для использования в свойстве 'src' элемента image
 item.icon(itemid: int) -> str
+
+-- Возвращает имя блока который поставится при установке блока
+item.placing_block(itemid: int) -> str
+
+-- Возвращает emission параметр у предмета
+item.emission(itemid: int) -> str
 ```
 
 

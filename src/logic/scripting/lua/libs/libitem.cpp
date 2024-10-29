@@ -54,11 +54,36 @@ static int l_item_caption(lua::State* L) {
     return 0;
 }
 
+static int l_item_placing_block(lua::State* L) {
+    if (auto def = get_item_def(L, 1)) {
+        return lua::pushstring(L, def->placingBlock);
+    }
+    return 0;
+}
+
+static int l_item_emission(lua::State* L) {
+    if (auto def = get_item_def(L, 1)) {
+        lua::createtable(L, 4, 0);
+        lua::pushinteger(L, def->emission[0]);
+        lua::rawseti(L, 1);
+        lua::pushinteger(L, def->emission[1]);
+        lua::rawseti(L, 2);
+        lua::pushinteger(L, def->emission[2]);
+        lua::rawseti(L, 3);
+        lua::pushinteger(L, def->emission[3]);
+        lua::rawseti(L, 4);
+        return 1;
+    }
+    return 0;
+}
+
 const luaL_Reg itemlib[] = {
     {"index", lua::wrap<l_item_index>},
     {"name", lua::wrap<l_item_name>},
     {"stack_size", lua::wrap<l_item_stack_size>},
     {"defs_count", lua::wrap<l_item_defs_count>},
     {"icon", lua::wrap<l_item_get_icon>},
+    {"placing_block", lua::wrap<l_item_placing_block>},
+    {"emission", lua::wrap<l_item_emission>},
     {"caption", lua::wrap<l_item_caption>},
     {NULL, NULL}};

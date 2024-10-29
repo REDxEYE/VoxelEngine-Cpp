@@ -18,4 +18,10 @@ item.defs_count() -> int
 
 -- Returns item icon name to use in 'src' property of an image element
 item.icon(itemid: int) -> str
+
+-- Returns item placing-block name
+item.placing_block(itemid: int) -> str
+
+-- Returns item emission property value
+item.emission(itemid: int) -> str
 ```
