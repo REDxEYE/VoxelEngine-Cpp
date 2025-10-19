@@ -140,6 +140,7 @@ namespace util {
     /// @param b segment point B
     /// @param point given point (may be anywhere)
     /// @note this overload is actually faster (comment out method to compare)
+    /// @note 0.001f bias added to make rounding consistent.
     /// @return nearest point on the segment to given point 
     inline glm::ivec3 closest_point_on_segment(
         const glm::ivec3& a, const glm::ivec3& b, const glm::ivec3& point
@@ -150,6 +151,6 @@ namespace util {
         float len = length2(vec);
         float t = (((da - db) / len) * 0.5f + 0.5f);
         t = std::min(1.0f, std::max(0.0f, t));
-        return a + glm::ivec3(glm::vec3(vec) * t);
+        return a + glm::ivec3((glm::vec3(vec) * t) + 0.001f);
     }
 }
